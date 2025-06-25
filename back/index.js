@@ -24,3 +24,10 @@ app.listen(port, function () {
 
 // ACA EMPIEZA EL TRABAJO NUESTRO
 
+app.post('/obtenerDatosRegistro'), async function (req,res) {
+    /*await ('INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin) VALUES ('${req.body.nombre_suario}', '${req.body.contraseña}', '${req.body.es_admin}')')*/
+
+    res.send("se agrego correctamente")
+
+    //AGREGAR TRY CATCH Y CORREGIR
+}
