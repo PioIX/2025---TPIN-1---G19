@@ -69,3 +69,11 @@ CREATE TABLE IF NOT EXISTS Usuarios(
 CREATE TABLE IF NOT EXISTS Respuestas(
     acerto BOOLEAN
 );
+
+
+
+
+INSERT INTO Usuarios (idUsuario, nombre_usuario, contraseña, es_admin )
+VALUES
+	('1', '1', '1', 1);
+
