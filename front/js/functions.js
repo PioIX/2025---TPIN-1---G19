@@ -17,8 +17,6 @@ function existsUser (email,password) { //creas la funcion y los() los parametros
 }
 
 
-// EJERCICIO 7
-
 function login() {
     let email = ui.getEmail(); //declaras el email y toma el email ingresado
     let password = ui.getPassword();
@@ -72,5 +70,50 @@ function cerrarsesion(){
         ui.showModal("Cerraste sesion")
     } else {
         ui.showModal("Seguis en sesion")
+    }
+}
+
+
+
+async function login() {
+    const email = ui.getEmail();       // Obtener el email del usuario
+    const password = ui.getPassword(); // Obtener la contraseña
+
+    if (!email || !password) {
+        ui.showModal("Por favor completá todos los campos.");
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.userId > 0) {
+            idLogged = data.userId;
+            ui.setUser(email);
+            showNotes(idLogged);
+            ui.changeScreen();
+        } else if (data.reason === "wrong-password") {
+            ui.showModal("Contraseña incorrecta. Intentá de nuevo.");
+            idLogged = -1;
+        } else if (data.reason === "user-not-found") {
+            ui.showModal("Usuario no encontrado.");
+            idLogged = -1;
+        } else {
+            ui.showModal("Ocurrió un error inesperado al iniciar sesión.");
+            idLogged = -1;
+        }
+
+    } catch (error) {
+        console.error("Error en el login:", error);
+        ui.showModal("No se pudo conectar con el servidor.");
+        idLogged = -1;
     }
 }
