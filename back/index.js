@@ -24,10 +24,27 @@ app.listen(port, function () {
 
 // ACA EMPIEZA EL TRABAJO NUESTRO
 
-app.post('/obtenerDatosRegistro'), async function (req,res) {
-    /*await ('INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin) VALUES ('${req.body.nombre_suario}', '${req.body.contraseña}', '${req.body.es_admin}')')*/
 
+
+/*app.post('/obtenerDatosRegistro'), async function (req,res) {
+    try {
+         await realizarQuery(`
+        ('INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin) VALUES ('${req.body.nombre_usuario}', '${req.body.contraseña}', '${req.body.es_admin}');')
+    `)
     res.send("se agrego correctamente")
+    } catch(error){
+        console.log(error);
+    }
 
-    //AGREGAR TRY CATCH Y CORREGIR
-}
+}*/
+
+app.post('/guardarUsuarios', async function (req,res) {
+    try {
+         await realizarQuery(`
+        ('INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin) VALUES ('${req.body.user}', '${req.body.password}', '${req.body.es_admin}');')
+    `)
+    res.send("se agrego correctamente")
+    } catch(error){
+        console.log(error);
+    }
+})
