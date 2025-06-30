@@ -1,40 +1,55 @@
 let idLogged = -1  
 
-function existsUser (email,password) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
-    let i=0 // para instanciar i
-    while(i < users.length){ // verificas que i sea menor a la longitud de la cant de usuarios
-        if(users[i].email == email){ // si username es == a username de user
-            if(users[i].password == password) // lo mismo con contra
-                return users[i].idU; // si funciona retorna el el id
-           else {
-                return 0 //sino retorna 0 "error"
-            }
+async function existsUser(nombre,password) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
+        try {
+            const response = await fetch(`http://localhost:4000/buscarUsuario`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({nombre_usuario: nombre, contraseña: password})
+            })
+            let result = await response.json()
+            console.log(result)
+            return result
+        } catch (error) {
+            console.log(error, "hola no funciono")
         }
-        i++;  
     } 
-    return -1;
-    
-}
 
+    async function conseguirID (nombre) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
+        try {
+            const response = await fetch(`http://localhost:4000/conseguirID`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({nombre_usuario: nombre})
+            })
+            let result = await response.json()
+            console.log(result)
+            return result
+        } catch (error) {
+            console.log(error)
+        }
+    } 
 
-function login() {
-    let email = ui.getEmail(); //declaras el email y toma el email ingresado
-    let password = ui.getPassword();
-    let resultado = existsUser(email, password) // el res llama a la funcion de arriba
-    if (resultado > 0) { //si resutaldo existe, 
-        idLogged = resultado;// id logged ahora va a ser 4 (osea el user 4)
-        ui.setUser(email);
-        showNotes(idLogged)
-        ui.changeScreen();// y cambia la pantalla de notas
-    } else if (resultado == 0) {
-        ui.showModal("Contraseña incorrecta, escribir nuevamente")
-        idLogged = -1;
-    } else {
-        ui.showModal("TODO ES INCORRECTO")
-        idLogged = -1;
-    }
-}
-
+    async function esAdmin (nombre) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
+        try {
+            const response = await fetch(`http://localhost:4000/esAdmin`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({nombre_usuario: nombre})
+            })
+            let result = await response.json()
+            console.log(result)
+            return result
+        } catch (error) {
+            console.log(error)
+        }
+    } 
 
 function newuser(email,password,username) {
     let resultado = existsUser(email, password)
@@ -76,44 +91,31 @@ function cerrarsesion(){
 
 
 async function login() {
-    const email = ui.getEmail();       // Obtener el email del usuario
-    const password = ui.getPassword(); // Obtener la contraseña
-
-    if (!email || !password) {
-        ui.showModal("Por favor completá todos los campos.");
-        return;
-    }
-
     try {
-        const response = await fetch('/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ email, password })
-        });
-
-        const data = await response.json();
-
-        if (data.success && data.userId > 0) {
-            idLogged = data.userId;
-            ui.setUser(email);
-            showNotes(idLogged);
-            ui.changeScreen();
-        } else if (data.reason === "wrong-password") {
-            ui.showModal("Contraseña incorrecta. Intentá de nuevo.");
-            idLogged = -1;
-        } else if (data.reason === "user-not-found") {
-            ui.showModal("Usuario no encontrado.");
-            idLogged = -1;
+        let nombre = ui.getUser();       // Obtener el email del usuario
+        let password = ui.getPassword(); // Obtener la contraseña
+        console.log(nombre, password)
+        let resultado = await existsUser(nombre, password)  
+        console.log(resultado)
+        if (resultado.length > 0) {
+            idLogged = await conseguirID(nombre)
+            let admin = await esAdmin(nombre)
+            console.log(admin)
+            if (admin > 0) {
+                ui.clearLoginInputs()
+                console.log("es admin y entro al juego")
+                /* ui.changescreenAdmin()  */
+            } else {
+                ui.clearLoginInputs()
+                console.log("no es admin y entro al juego")
+                /*
+                ui.changeScreen() */
+            }
         } else {
-            ui.showModal("Ocurrió un error inesperado al iniciar sesión.");
-            idLogged = -1;
+            console.log("no entro")
+            idLogged = -1
         }
-
     } catch (error) {
-        console.error("Error en el login:", error);
-        ui.showModal("No se pudo conectar con el servidor.");
-        idLogged = -1;
+        console.log(error)
     }
 }

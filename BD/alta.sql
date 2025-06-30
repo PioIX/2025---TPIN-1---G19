@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS Canciones(
+/*CREATE TABLE IF NOT EXISTS Canciones(
     nombre_cancion VARCHAR(50),
     nombre_artista VARCHAR(50),
     nro_reproducciones BIGINT
@@ -56,9 +56,9 @@ VALUES
     ('Stay',	'The Kid LAROI & Justin Bieber',	3576000000),
     ('Perfect',	'Ed Sheeran',	3480000000),
     ('Believer',	'Imagine Dragons',	3467000000);
-
+*/
 CREATE TABLE IF NOT EXISTS Usuarios(
-    idU INT,
+    idU INT ,
     nombre_usuario VARCHAR(50),
     contraseña VARCHAR(50),
     es_admin BOOLEAN,

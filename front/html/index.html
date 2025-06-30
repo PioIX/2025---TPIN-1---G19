@@ -12,9 +12,6 @@
 <body>
     <nav class="navbar navbar-expand-lg sticky-top bg-dark">
         <div class="container-fluid d-flex flex-row align-items-center">
-            <a class="navbar-brand" href="#">
-                <img src="./logo.png" width="56" height="56" alt="Logo de la Casa Salesiana Pio IX">
-            </a>
             <div class="flex-grow-1">
                 <h4 class="text-white mb-3">TP1 - Pio Keep - Bloc de notas - Alumnos: Sebastián Cortes, Camila Giardini, Emma Garegnani y Bautista Malagreca</h4>
                 <h5 class="text-white mb-3">
@@ -25,24 +22,27 @@
     </nav>
 
     //revisar esto! 
-
-    <h2>Usuario</h2>
-    <input id="idU" placeholder="Ingrese el id" type="number">
-    <input id="nombre_usuario" placeholder="Ingrese el nombre de usuario">
-    <input id="contraseña" placeholder="Ingrese la contraseña">
-    <input id="es_admin" placeholder="¿Es admin?">
-    <button onclick="guardarUsuario()">Guardar</button>
+    <div class="parteadmin" hidden>
+        <h2>Usuario</h2>
+        <input id="idU" placeholder="Ingrese el id" type="number">
+        <input id="nombre_usuario" placeholder="Ingrese el nombre de usuario">
+        <input id="contraseña" placeholder="Ingrese la contraseña">
+        <input id="es_admin" placeholder="¿Es admin?">
+        <button onclick="guardarUsuario()">Guardar</button>
+    </div>
+    
 
     <div class="container mt-3" id="loginForm">
         <div class="shadow p-3 mb-5 bg-white rounded">
             <legend>Iniciar Sesión</legend>
-            <div class="form-floating mb-3">
-                <input type="mail" class="form-control" id="email" placeholder="nombre@example.com">
-                <label for="email">Usuario</label>
-            </div>
+            
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="password" placeholder="********">
                 <label for="password">Contraseña</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="username" placeholder="Pepe">
+                <label for="username">Nombre de usuario</label>
             </div>
             <div class="mb-3 d-flex justify-content-end">
                 <button class="btn btn-success me-2" onclick="login()" data-bs-toggle="tooltip" data-bs-placement="top" title="Iniciar sesión">Iniciar sesión</button>
@@ -50,10 +50,6 @@
         </div>
         <div class="shadow p-3 mb-5 bg-white rounded">
             <legend>Registrarse</legend>
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="username" placeholder="Pepe">
-                <label for="username">Nombre de usuario</label>
-            </div>
             <div class="mb-3 d-flex justify-content-end">
                 <button class="btn btn-danger" onclick="registrarse()" data-bs-toggle="tooltip" data-bs-placement="top"
                     title="Registrarse">Registrarse</button>
@@ -132,11 +128,8 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
 
-    <script src="dom.js"></script>
-    <script src="./clases/User.js"></script>
-    <script src="./clases/Modification.js"></script>
-    <script src="./clases/Note.js"></script>
-    <script src="function.js"></script>
+    <script src="../js/dom.js"></script>
+    <script src="../js/functions.js"></script>
 </body>
 
 </html>

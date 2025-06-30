@@ -4,7 +4,9 @@
   "description": "Proyecto de mitad de año",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon index.js",
+    "pio": "nodemon --env-file=.pio.env index.js",
+    "home": "nodemon --env-file=.home.env index.js"
   },
   "keywords": [
     "ES"
@@ -19,3 +21,4 @@
     "nodemon": "^3.1.10"
   }
 }
+

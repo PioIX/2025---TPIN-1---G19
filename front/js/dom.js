@@ -61,4 +61,8 @@ class UserInterface {
             loginForm.style.display = "none";
         }
     } 
+
+
 }
+
+const ui = new UserInterface()

@@ -36,7 +36,7 @@ app.listen(port, function () {
 
 }*/
 
-app.post('/guardarUsuarios'), async function (req,res) {
+app.post('/guardarUsuarios', async function (req,res) {
     try {
          await realizarQuery(`
         ('INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin) VALUES ('${req.body.nombre_usuario}', '${req.body.contraseña}', '${req.body.es_admin}');')
@@ -46,5 +46,28 @@ app.post('/guardarUsuarios'), async function (req,res) {
         console.log(error);
     }
 
-}
+})
 
+app.post('/buscarUsuario', async function(req,res){
+    console.log(req.body.nombre_usuario)
+    try {
+        response = await realizarQuery(`
+            SELECT * FROM Usuarios WHERE nombre_usuario = '${req.body.nombre_usuario}' and contraseña = '${req.body.contraseña}'     
+        `)
+        console.log(response)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+app.post('/conseguirID', async function(req,res){
+    response = await realizarQuery(`
+        SELECT idU FROM Usuarios WHERE nombre = '${req.body.nombre_usuario}'     
+    `)
+})
+
+app.post('/esAdmin', async function(req,res){
+    response = await realizarQuery(`
+        SELECT es_admin FROM Usuarios WHERE nombre = '${req.body.nombre_usuario}'     
+    `)
+})
