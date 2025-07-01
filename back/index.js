@@ -38,13 +38,19 @@ app.listen(port, function () {
 
 }*/
 
+// REGISTRO USUARIOS
+
 app.post('/guardarUsuarios', async function (req,res) {
+
     try {
-         await realizarQuery(`
-        ('INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin) VALUES ('${req.body.user}', '${req.body.password}', '${req.body.es_admin}');')
-    `)
-    res.send("se agrego correctamente")
-    } catch(error){
-        console.log(error);
+        const resultado = await realizarQuery(`SELECT * From Usuarios WHERE email = '${req.body.email}' `)
+
+        if (resultado.length==0){
+            res.send("ya existe un usuario con ese email")
+        } else {
+            await realizarQuery(` ('INSERT INTO Usuarios (nombre_usuario, contraseña, email, es_admin) VALUES ('${req.body.user}', '${req.body.password}', '${req.body.email}', '${req.body.es_admin}');') `)
+        }
+    } catch (error) {
+        res.send(error)
     }
 })
