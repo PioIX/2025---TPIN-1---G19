@@ -21,3 +21,14 @@ app.get('/', function (req, res) {
 app.listen(port, function () {
     console.log(`Server running in http://localhost:${port}`);
 });
+
+
+app.get('/iniciarSesion', async function (req,res) {
+    await realizarQuery(`SELECT * FROM Usuarios WHERE email=${req.query.email} AND contraseña=${req.query.password}`)
+    
+    if (req.query.username != undefined) {
+        changeScreen()
+    } else {
+        res.send("no existe un usuario con ese email y/o contraseña")
+    }    
+})
