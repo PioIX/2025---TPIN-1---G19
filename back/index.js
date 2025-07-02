@@ -24,11 +24,12 @@ app.listen(port, function () {
 
 
 app.get('/iniciarSesion', async function (req,res) {
-    await realizarQuery(`SELECT * FROM Usuarios WHERE email=${req.query.email} AND contraseña=${req.query.password}`)
-    
-    if (req.query.username != undefined) {
-        changeScreen()
+    let resultado;
+    resultado=await realizarQuery(`SELECT * FROM Usuarios WHERE email=${req.query.email} AND contraseña=${req.query.password}`)
+
+    if (resultado.length==0){
+        res.send("se inició correctamente")
     } else {
         res.send("no existe un usuario con ese email y/o contraseña")
-    }    
+    }
 })
