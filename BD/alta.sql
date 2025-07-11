@@ -1,7 +1,17 @@
-/*CREATE TABLE IF NOT EXISTS Canciones(
+CREATE TABLE IF NOT EXISTS Canciones(
+<<<<<<< Updated upstream
+    id_cancion  INT auto_increment,
     nombre_cancion VARCHAR(50),
     nombre_artista VARCHAR(50),
-    nro_reproducciones BIGINT
+    nro_reproducciones BIGINT,
+    primary key (id_cancion)
+=======
+	idCancion INT auto_increment,
+    nombre_cancion VARCHAR(50),
+    nombre_artista VARCHAR(50),
+    nro_reproducciones BIGINT,
+	PRIMARY KEY (idCancion)
+>>>>>>> Stashed changes
 );
 
 INSERT INTO Canciones (nombre_cancion, nombre_artista, nro_reproducciones)
@@ -56,24 +66,33 @@ VALUES
     ('Stay',	'The Kid LAROI & Justin Bieber',	3576000000),
     ('Perfect',	'Ed Sheeran',	3480000000),
     ('Believer',	'Imagine Dragons',	3467000000);
-*/
+
 CREATE TABLE IF NOT EXISTS Usuarios(
-    idU INT ,
+    idUsuario INT auto_increment,
     nombre_usuario VARCHAR(50),
+    email VARCHAR(50),
     contraseña VARCHAR(50),
     es_admin BOOLEAN,
-    PRIMARY KEY (idU)
+    PRIMARY KEY (idUsuario)
 );
+
+INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin)
+VALUES
+	('bauti', '123', 1),
+    ('ema', '11', 1),
+    ('cami', '12', 1),
+    ('sebas', '123', 1),
+    ( 'mati', '123', 0);
 
 
 CREATE TABLE IF NOT EXISTS Respuestas(
     acerto BOOLEAN
 );
 
-
-
-
-INSERT INTO Usuarios (idUsuario, nombre_usuario, contraseña, es_admin )
+INSERT INTO Usuarios(nombre_usuario,email,contraseña,es_admin)
 VALUES
-	('1', '1', '1', 1);
-
+	('bauti','bauti@gmail.com','123',true),
+    ('emma','emma@gmail.com','11',true),
+    ('cami','cami@gmail.com','12',true),
+    ('sebas','sebas@gmail.com','123',true),
+    ('mati','a','123',false);

@@ -14,7 +14,7 @@
         <p class="subtitulo">Alumnos: Sebastián Cortes, Camila Giardini, Emma Garegnani y Bautista Malagreca - 5to Info 2025</p>
     </header>
 
-    <main id="loginForm" class="formulario">
+    <main id="loginForm" class="formulario" style="display: block;">
         <section class="bloque">
             <h2>Iniciar Sesión</h2>
             <input type="text" id="username" placeholder="Nombre de usuario">
@@ -30,7 +30,7 @@
     </main>
 
 
-    <main id="gameScreen" class="pantalla" hidden>
+    <main id="gameScreen" class="pantalla" style="display: none;">
         <h2 id="loggedUsername">¡Bienvenido/a!</h2>
         <p class="indicacion">¿Qué canción tiene más reproducciones?</p>
 
@@ -58,14 +58,16 @@
     </main>
 
    
-    <main id="adminPanel" class="formulario" hidden>
-        <h2>Panel Administrador</h2>
-        <input id="idU" type="number" placeholder="ID de usuario">
-        <input id="nombre_usuario" placeholder="Nombre de usuario">
-        <input id="contraseña" type="password" placeholder="Contraseña">
-        <input id="es_admin" placeholder="¿Es admin? (true/false)">
-        <button onclick="guardarUsuario()">Guardar Usuario</button>
-    </main>
+<main id="adminPanel" class="formulario" style="display: none;">
+    <h2>Panel Administrador - Añadir Canción</h2>
+
+    <input id="nombre_cancion" type="text" placeholder="Nombre de la canción">
+    <input id="nombre_artista" type="text" placeholder="Nombre del artista">
+    <input id="nro_reproducciones" type="number" placeholder="Número de reproducciones">
+
+    <button onclick="guardarCancion()">Guardar Canción</button>
+</main>
+
 
     <script src="../js/dom.js"></script>
     <script src="../js/functions.js"></script>
