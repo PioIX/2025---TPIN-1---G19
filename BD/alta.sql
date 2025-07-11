@@ -68,20 +68,12 @@ VALUES
     ('Believer',	'Imagine Dragons',	3467000000);
 
 CREATE TABLE IF NOT EXISTS Usuarios(
-<<<<<<< Updated upstream
-    id INT auto_increment,
-=======
     idUsuario INT auto_increment,
->>>>>>> Stashed changes
     nombre_usuario VARCHAR(50),
     email VARCHAR(50),
     contraseña VARCHAR(50),
     es_admin BOOLEAN,
-<<<<<<< Updated upstream
-    PRIMARY KEY (id)
-=======
     PRIMARY KEY (idUsuario)
->>>>>>> Stashed changes
 );
 
 INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin)
@@ -97,9 +89,6 @@ CREATE TABLE IF NOT EXISTS Respuestas(
     acerto BOOLEAN
 );
 
-<<<<<<< Updated upstream
-=======
-
 INSERT INTO Usuarios(nombre_usuario,email,contraseña,es_admin)
 VALUES
 	('bauti','bauti@gmail.com','123',true),
@@ -107,4 +96,3 @@ VALUES
     ('cami','cami@gmail.com','12',true),
     ('sebas','sebas@gmail.com','123',true),
     ('mati','a','123',false);
->>>>>>> Stashed changes

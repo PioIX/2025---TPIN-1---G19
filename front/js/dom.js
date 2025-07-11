@@ -29,7 +29,6 @@ class UserInterface {
      * Si se está mostrando la pantalla de login la oculta y muestra la de notas. Y viceversa.
      */
     changeScreen() {
-<<<<<<< Updated upstream
         const juego = document.getElementById("gameScreen");
         const loginForm = document.getElementById("loginForm");
         loginForm.style.display = 'none';
@@ -44,24 +43,6 @@ class UserInterface {
         loginForm.style.display = 'none';
         admin.style.display = 'block';
     } 
+} 
 
-
-
-=======
-        const gameScreen = document.getElementById("gameScreen");
-        const loginForm = document.getElementById("loginForm");
-        if (gameScreen.style.display !== "none") {
-            gameScreen.style.display = "none";
-            loginForm.style.display = "";
-            this.clearAllNotes();
-            this.clearSelect();
-        }
-        else {
-            gameScreen.style.display = "";
-            loginForm.style.display = "none";
-        }
-    } 
->>>>>>> Stashed changes
-}
-
-const ui = new UserInterface()
+const ui = new UserInterface()                                                              

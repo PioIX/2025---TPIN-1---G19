@@ -1,6 +1,6 @@
 let idLogged = -1  
 
-<<<<<<< Updated upstream
+
 async function existsUser(nombre,password) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
     try {
         console.log(10)
@@ -18,24 +18,10 @@ async function existsUser(nombre,password) { //creas la funcion y los() los para
         console.log(error, "hola no funciono")
     }
 } 
-=======
-async function existsUser(nombre,password) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia para verificar los usuarios
-        try {
-            const response = await fetch(`http://localhost:4000/buscarUsuario?nombre_usuario=${nombre}&contraseña=${password}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            let resultado = await response.json()
-            console.log(resultado)
-            return resultado
-        } catch (error) {
-            console.log(error, "hola no funciono")
-        }
-    }
+
+
     
-    /*async function login(){
+ /*async function login(){
         let nombre=getUsername()
         let password=getPassword()
         let resultado=existsUser(nombre, password)
@@ -45,16 +31,18 @@ async function existsUser(nombre,password) { //creas la funcion y los() los para
             let admin = await esAdmin(nombre)
             console.log(admin)
         }
-    }*/
->>>>>>> Stashed changes
+}*/
 
-    async function conseguirID(nombre) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
+
+async function conseguirID(nombre) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
         try {
-            const response = await fetch(`http://localhost:4000/conseguirID?nombre_usuario=${nombre}`, {
-                method: "GET",
+            const response = await fetch(`http://localhost:4000/conseguirID`, {
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
+                body: JSON.stringify({nombre_usuario: nombre})
+
             })
             let result = await response.json()
             console.log(result)
@@ -67,7 +55,7 @@ async function existsUser(nombre,password) { //creas la funcion y los() los para
     async function esAdmin(nombre) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
         try {
             const response = await fetch(`http://localhost:4000/esAdmin`, { //cambiar la url para que sea pedido get
-                method: "GET",
+                method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -95,7 +83,7 @@ async function existsUser(nombre,password) { //creas la funcion y los() los para
             return -1;
         }
 }*/ //ya está registrar
-
+/*
 async function login() {
     try {
         let nombre = ui.getUsername();       // Obtener el usuario
@@ -112,11 +100,11 @@ async function login() {
                 ui.clearLoginInputs()
                 console.log("es admin y entro al juego")
                 /* ui.changescreenAdmin() */ 
-            } else {
-                ui.clearLoginInputs()
-                console.log("no es admin y entro al juego")
+            //} else {
+              //  ui.clearLoginInputs()
+                //console.log("no es admin y entro al juego")
                 /*
-                ui.changeScreen() */
+                ui.changeScreen() 
             }
 
             //ui.changeScreen() va aca porque cambia la pantalla sea admin o no
@@ -127,18 +115,19 @@ async function login() {
     } catch (error) {
         console.log(error)
     }
-}
+}*/
             
 
 async function registrar() {
-    let nombre_usuario = ui.getUser();
+    let nombre_usuario = ui.getUsername();
     let email = ui.getEmail();
     let contraseña = ui.getPassword();
 
     const datos = {
         nombre_usuario:nombre_usuario,
         email:email,
-        contraseña:contraseña
+        contraseña:contraseña,
+        es_admin: false
     }
     
     try {
@@ -152,18 +141,17 @@ async function registrar() {
 
         let result = await response.json();
         console.log(result);
-        return result;
+        if (result > 0) {
+            login()
+        } else {
+            console.log("error")
+            showModal("Usuario existente, inicie sesion o ingrese otro correo electrónico")
+        }
     } catch (error) {
         console.log(error)
     }
 
-    if (resultado > 0) {
-        login()
-    } else {
-        showModal("Usuario existente, inicie sesion o ingrese otro correo electrónico")
-    }
 }
-
 
 function cerrarsesion(){
     if (confirm("¿Queres cerrar sesion?") == true) {
@@ -174,14 +162,14 @@ function cerrarsesion(){
     } else {
         ui.showModal("Seguis en sesion")
     }
-<<<<<<< Updated upstream
+
 }
 
 
 
 async function login() {
     try {
-        let nombre = ui.getUser();       // Obtener el email del usuario
+        let nombre = ui.getUsername();       // Obtener el email del usuario
         let password = ui.getPassword(); // Obtener la contraseña
         console.log(nombre, password)
         let resultado = await existsUser(nombre, password)  
@@ -213,6 +201,4 @@ async function login() {
 
 
 
-=======
-}
->>>>>>> Stashed changes
+
