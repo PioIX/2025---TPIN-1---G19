@@ -3,41 +3,22 @@ class UserInterface {
         
     }
 
-    /**
-     * Obtiene el texto ingresado en el input "Correo electrónico", sección "Login".
-     * @returns String que contiene el correo electrónico ingresado por el usuario.
-     */
     getEmail() {
         return document.getElementById("email").value;
     }
 
-    /**
-     * Obtiene el texto ingresado en el input "Usuario", sección "Login".
-     * @returns String que contiene el nombre de usuario.
-     */
-    getUser() {
+    getUsername() {
         return document.getElementById("username").value;
     }
 
-    /**
-     * Modifica el nombre de usuario logueado presentado en pantalla.
-     * @param {String} username Nombre del usuario logueado.
-     */
     setUser(username) {
         document.getElementById("loggedUsername").textContent = `¡Bienvenido ${username}!`;
     }
 
-    /**
-     * Obtiene el texto ingresado en el input "Contraseña", sección "Login".
-     * @returns String que contiene la contraseña ingresada por el usuario.
-     */
     getPassword() {
         return document.getElementById("password").value;
     }
 
-    /**
-     * Vacía el contenido de los inputs del login / registro.
-     */
     clearLoginInputs() {
         document.getElementById("email").value = "";
         document.getElementById("password").value = "";
@@ -48,6 +29,7 @@ class UserInterface {
      * Si se está mostrando la pantalla de login la oculta y muestra la de notas. Y viceversa.
      */
     changeScreen() {
+<<<<<<< Updated upstream
         const juego = document.getElementById("gameScreen");
         const loginForm = document.getElementById("loginForm");
         loginForm.style.display = 'none';
@@ -65,6 +47,21 @@ class UserInterface {
 
 
 
+=======
+        const gameScreen = document.getElementById("gameScreen");
+        const loginForm = document.getElementById("loginForm");
+        if (gameScreen.style.display !== "none") {
+            gameScreen.style.display = "none";
+            loginForm.style.display = "";
+            this.clearAllNotes();
+            this.clearSelect();
+        }
+        else {
+            gameScreen.style.display = "";
+            loginForm.style.display = "none";
+        }
+    } 
+>>>>>>> Stashed changes
 }
 
 const ui = new UserInterface()
