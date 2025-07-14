@@ -2,11 +2,6 @@ class UserInterface {
     constructor() {
         
     }
-
-    getEmail() {
-        return document.getElementById("email").value;
-    }
-
     getUsername() {
         return document.getElementById("username").value;
     }
@@ -17,6 +12,15 @@ class UserInterface {
 
     getPassword() {
         return document.getElementById("password").value;
+    }
+    getNombre_artista() {
+        return document.getElementById("nombre_artista").value;
+    }
+    getNombre_cancion() {
+    return document.getElementById("nombre_cancion").value;
+    }
+    getReproducciones() {
+    return document.getElementById("nro_reproducciones").value;
     }
 
     clearLoginInputs() {

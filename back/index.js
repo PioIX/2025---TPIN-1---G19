@@ -39,10 +39,24 @@ app.listen(port, function () {
 app.post('/guardarUsuarios', async function (req,res) {
     try {
         await realizarQuery(`
-        ('INSERT INTO Usuarios (nombre_usuario, email, contraseña, es_admin) 
-            VALUES ('${req.body.nombre_usuario}','${req.body.email}', '${req.body.contraseña}', '${req.body.es_admin}')')
+        INSERT INTO Usuarios (nombre_usuario,contraseña, es_admin) 
+            VALUES ('${req.body.nombre_usuario}', '${req.body.contraseña}', ${req.body.es_admin})
         `)
-        res.send("se agrego correctamente")
+        res.send({mensaje:"se agrego correctamente"})
+    } catch(error){
+        console.log(error);
+        res.send(error)
+    }
+
+})
+
+app.post('/guardarCanciones', async function (req,res) {
+    try {
+        await realizarQuery(`
+        INSERT INTO Canciones (nombre_cancion, nombre_artista, nro_reproducciones) 
+            VALUES ('${req.body.nombre_cancion}','${req.body.nombre_artista}', '${req.body.nro_reproducciones}')
+        `)
+        res.send({mensaje: "se agrego correctamente"})
     } catch(error){
         console.log(error);
         res.send(error)
