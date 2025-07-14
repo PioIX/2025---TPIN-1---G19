@@ -197,6 +197,23 @@ async function login() {
 }
 
 
+async function guardarCancion(nombre,nombreArt,reproducciones) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
+    try {
+        console.log(10)
+        const response = await fetch(`http://localhost:4000/guardarCancion`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({nombre_cancion: nombre, nombre_artista: nombreArt, nro_reproducciones: reproducciones})
+        })
+        let result = await response.json()
+        console.log(result)
+        return result
+    } catch (error) {
+        console.log(error, "hola no funciono")
+    }
+} 
 
 
 
