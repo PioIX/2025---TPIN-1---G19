@@ -71,3 +71,11 @@ app.post('/esAdmin', async function(req,res){
         SELECT es_admin FROM Usuarios WHERE nombre = '${req.body.nombre_usuario}'     
     `)
 })
+
+app.get('/traerReproducciones', async function(req,res){
+    response = await realizarQuery(`
+        SELECT nombre_cancion, nombre_artista, nro_reproducciones FROM Canciones ORDER BY RAND()
+        `
+    )
+    res.send({response : response})
+})
