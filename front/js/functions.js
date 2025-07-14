@@ -21,17 +21,6 @@ async function existsUser(nombre,password) { //creas la funcion y los() los para
 
 
     
- /*async function login(){
-        let nombre=getUsername()
-        let password=getPassword()
-        let resultado=existsUser(nombre, password)
-
-        if (resultado.length>0){
-            idLogged = await conseguirID(nombre)
-            let admin = await esAdmin(nombre)
-            console.log(admin)
-        }
-}*/
 
 
 async function conseguirID(nombre) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
@@ -73,16 +62,17 @@ async function conseguirID(nombre) { //creas la funcion y los() los parametros q
         }
     } 
 
-/*async function newuser(email,password,username) {
-    let resultado = existsUser(email, password)
+    async function newuser(username,password) {
+    let resultado = existsUser(username,password)
     if (resultado <= 0) {
-            users.push(new User (username, email, password))
+            users.push(new User (username, password))
             return users.length;
         } else {
             ui.showModal("Ese usuario ya existe")
             return -1;
         }
-}*/ //ya está registrar
+}
+ //ya está registrar
 /*
 async function login() {
     try {
@@ -120,12 +110,10 @@ async function login() {
 
 async function registrar() {
     let nombre_usuario = ui.getUsername();
-    let email = ui.getEmail();
     let contraseña = ui.getPassword();
 
     const datos = {
         nombre_usuario:nombre_usuario,
-        email:email,
         contraseña:contraseña,
         es_admin: false
     }
@@ -141,11 +129,11 @@ async function registrar() {
 
         let result = await response.json();
         console.log(result);
-        if (result > 0) {
+        if (result.length > 0) {
             login()
         } else {
             console.log("error")
-            showModal("Usuario existente, inicie sesion o ingrese otro correo electrónico")
+            console.log("Usuario existente, inicie sesion o vuelva a intentar")
         }
     } catch (error) {
         console.log(error)
@@ -200,7 +188,7 @@ async function login() {
 async function guardarCancion(nombre,nombreArt,reproducciones) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
     try {
         console.log(10)
-        const response = await fetch(`http://localhost:4000/guardarCancion`, {
+        const response = await fetch(`http://localhost:4000/guardarCanciones`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -211,9 +199,23 @@ async function guardarCancion(nombre,nombreArt,reproducciones) { //creas la func
         console.log(result)
         return result
     } catch (error) {
-        console.log(error, "hola no funciono")
+        console.log("hola no funciono")
     }
 } 
+
+async function insertarCancion(){
+    let nombre_cancion= ui.getNombre_cancion()
+    let nombre_artista= ui.getNombre_artista()
+    let nro_reproducciones= ui.getReproducciones()
+    console.log(nombre_cancion, nombre_artista, nro_reproducciones)
+    let resultado = await guardarCancion(nombre_cancion,nombre_artista,nro_reproducciones)
+    console.log(resultado)
+    /*if (resultado.length > 0) {
+        console.log("Se inserto el usuario")
+    } else {
+        console.log("No se pudo insertar el usuario")
+    } */
+}
 
 
 
