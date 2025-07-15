@@ -61,15 +61,30 @@ app.post('/buscarUsuario', async function(req,res){
 })
 
 app.post('/conseguirID', async function(req,res){
-    response = await realizarQuery(`
+    
+    try {
+        response = await realizarQuery(`
         SELECT idU FROM Usuarios WHERE nombre = '${req.body.nombre_usuario}'     
     `)
+
+    res.json(response)
+    } catch (error) {
+        console.log(req.body.nombre_usuario)
+        res.json("error en el conseguirID")
+    }
+
 })
 
 app.post('/esAdmin', async function(req,res){
-    response = await realizarQuery(`
+    console.log(req.body)
+    try {
+       response = await realizarQuery(`
         SELECT es_admin FROM Usuarios WHERE nombre = '${req.body.nombre_usuario}'     
     `)
+    res.json(response) 
+    } catch (error) {
+        res.json("error en el admin")   
+    }
 })
 
 app.get('/traerReproducciones', async function(req,res){

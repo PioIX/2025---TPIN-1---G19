@@ -104,12 +104,12 @@ async function login() {
             if (admin > 0) {
                 ui.clearLoginInputs()
                 console.log("es admin y entro al juego")
-                /* ui.changescreenAdmin()  */
+                ui.changeScreen("adminPanel")
             } else {
                 ui.clearLoginInputs()
                 console.log("no es admin y entro al juego")
-                /*
-                ui.changeScreen() */
+                
+                ui.changeScreen("gameScreen")
             }
         } else {
             console.log("no entro")

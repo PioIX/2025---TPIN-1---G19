@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Louder or Softer</title>
+    <title>Upper or Lower - TP1 Pio Keep</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="../estilos/styles.css">
 </head>
-
 <body>
 
     <header class="header">
-        <h1>Louder or Softer - Juego de Reproducciones</h1>
+        <h1>Upper or Lower - Juego de Reproducciones</h1>
+        <p class="subtitulo">Alumnos: Sebastián Cortes, Camila Giardini, Emma Garegnani y Bautista Malagreca - 5to Info 2025</p>
     </header>
 
-    <main id="gameScreen" class="pantalla" hidden>
+    <main id="loginForm" class="formulario" style="display: block;">
+        <section class="bloque">
+            <h2>Iniciar Sesión</h2>
+            <input type="text" id="username" placeholder="Nombre de usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button onclick="login()">Ingresar</button>
+            <button onclick="registrar()">Registrarse</button>
+        </section>
+
+
+    <main id="gameScreen" class="pantalla" style="display: none;">
         <h2 id="loggedUsername">¡Bienvenido/a!</h2>
         <p class="indicacion">¿Qué canción tiene más reproducciones?</p>
 
@@ -24,43 +34,36 @@
                 <p id="artist1">Artista A</p>
                 <p>Reproducciones: <span id="plays1">???</span></p>
             </div>
-        </div>
-        <div class="shadow p-3 mb-4 bg-white rounded">
-            <legend>Notas</legend>
-            <div id="allNotes">
-                
-            </div>
-        </div>
-        <button type="button" onclick="cerrarSesion()" class="btn btn-outline-danger btn-lg mb-5">Cerrar sesión</button>
-    </div>
 
-    <div id="modal" class="modal fade" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalTitle">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p id="modalBody">Modal body text goes here.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">¡Listo!</button>
+            <div class="vs">VS</div>
+
+            <div class="cancion" id="song2">
+                <h3 id="title2">Canción B</h3>
+                <p id="artist2">Artista B</p>
+                <p>Reproducciones: ???</p>
+                <div class="botones">
+                    <button onclick="seleccionar('higher')">Más</button>
+                    <button onclick="seleccionar('lower')">Menos</button>
                 </div>
             </div>
         </div>
-    </div> -->
 
-    <div>
-        
-    </div>
+        <button class="cerrar" onclick="cerrarsesion()">Cerrar sesión</button>
+    </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script> 
+   
+<main id="adminPanel" class="formulario" style="display: none;">
+    <h2>Panel Administrador - Añadir Canción</h2>
+
+    <input id="nombre_cancion" type="text" placeholder="Nombre de la canción">
+    <input id="nombre_artista" type="text" placeholder="Nombre del artista">
+    <input id="nro_reproducciones" type="number" placeholder="Número de reproducciones">
+
+    <button onclick="insertarCancion()">Guardar Canción</button>
+</main>
+
 
     <script src="../js/dom.js"></script>
     <script src="../js/functions.js"></script>
 </body>
-
 </html>
