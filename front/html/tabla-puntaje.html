@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabla de Puntajes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../estilos/styles.css">
+</head>
+<body>
+
+    <header class="header" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+        <div class="header-left">
+          <button onclick="mostrarRegistro()">Registrarse</button>
+        </div>
+      
+        <div class="header-center" style="flex-grow: 1; text-align: center;">
+          <h1 style="color:#1d3557; margin:0;">Upper or Lower - Tabla de Puntajes</h1>
+        </div>
+      
+        <div class="header-right">
+          <button onclick="mostrarLogin()">Iniciar Sesión</button>
+        </div>
+      </header>
+      
+
+    <main>
+        <h2 class="titulo-seccion">Tabla de Puntajes</h2>
+
+        <section class="bloque">
+            <table class="tabla-puntajes">
+                <thead>
+                    <tr>
+                        <th>Puesto</th>
+                        <th>Nombre</th>
+                        <th>Puntaje</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaBody">
+                    <tr>
+                        <td>1</td>
+                        <td>Sebas</td>
+                        <td>150</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Bauti</td>
+                        <td>135</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Cami</td>
+                        <td>120</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Emma</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Mati</td>
+                        <td>75</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Martin</td>
+                        <td>60</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Facon</td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</body>
+</html>
