@@ -24,6 +24,7 @@ class UserInterface {
     }
 
     clearLoginInputs() {
+        document.getElementById("email").value = "";
         document.getElementById("password").value = "";
         document.getElementById("username").value = "";
     }
