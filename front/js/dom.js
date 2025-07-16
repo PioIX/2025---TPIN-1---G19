@@ -24,6 +24,9 @@ class UserInterface {
     }
 
     clearLoginInputs() {
+
+        //document.getElementById("email").value = "";
+
         document.getElementById("password").value = "";
         document.getElementById("username").value = "";
     }
@@ -38,6 +41,15 @@ class UserInterface {
         juego.style.display = 'block';
     } 
 
+
+    changeScreenLogin(){
+        const juego = document.getElementById("gameScreen");
+        const loginForm = document.getElementById("loginForm");
+        juego.style.display = 'none';
+        loginForm.style.display = 'block';
+    }
+
+
     changeScreenAdmin() {
         const admin = document.getElementById("adminPanel");
         const juego = document.getElementById("gameScreen");
@@ -45,7 +57,14 @@ class UserInterface {
         juego.style.display = 'none';
         loginForm.style.display = 'none';
         admin.style.display = 'block';
-    } 
-} 
 
-const ui = new UserInterface()                                                              
+
+        console.log("entro a admin")
+    }
+    
+}
+
+
+
+const ui = new UserInterface()
+

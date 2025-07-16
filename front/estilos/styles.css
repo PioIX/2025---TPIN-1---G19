@@ -12,6 +12,11 @@ body {
     padding: 20px;
 }
 
+
+img {
+    width: 10%;
+}
+
 .header {
     background-color: #a6dcef;
     padding: 20px;
