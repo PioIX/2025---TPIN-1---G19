@@ -20,9 +20,11 @@
             <input type="text" id="username" placeholder="Nombre de usuario">
             <input type="password" id="password" placeholder="Contraseña">
             <button onclick="login()">Ingresar</button>
+
             <button onclick="registrar()">Registrarse</button>
         </section>
     </main>
+
 
     <main id="gameScreen" class="pantalla" style="display: none;">
         <h2 id="loggedUsername">¡Bienvenido/a!</h2>
@@ -32,6 +34,7 @@
             <div class="cancion" id="song1">
                 <h3 id="title1">Canción A</h3>
                 <p id="artist1">Artista A</p>
+
                 <p id="reproducciones">Reproducciones: <span id="plays1">???</span></p>
             </div>
 
@@ -50,6 +53,7 @@
 
         <div id="puntaje">
             <h4 id="puntajeUsuario">Tu puntaje es de: </h4>
+
         </div>
 
         <button class="cerrar" onclick="cerrarsesion()">Cerrar sesión</button>
@@ -57,6 +61,7 @@
 
    
     <main id="adminPanel" class="formulario" style="display: none;">
+
         <h2>Panel Administrador - Añadir Canción</h2>
 
         <input id="nombre_cancion" type="text" placeholder="Nombre de la canción">
@@ -68,6 +73,7 @@
 
     <main id="tablaDePuntajes" style="display:none;">
         <h2>Tabla de puntajes</h2>
+
     </main>
 
 

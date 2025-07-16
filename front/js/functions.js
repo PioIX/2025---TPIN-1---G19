@@ -3,6 +3,7 @@ let arrayCanciones = [];
 let contadorCanciones=0;
 let contadorPuntaje=0;
 
+
 async function existsUser(nombre,password) { //creas la funcion y los() los parametros que recibe....i es una variable que cambia apra verificar los usuarios
     try {
         console.log(10)
@@ -52,9 +53,11 @@ async function conseguirID(nombre) { //creas la funcion y los() los parametros q
             let result = await response.json()
             console.log(result)
             if (result.length > 0) {
+
                 if (result[0].es_admin==1){
                     console.log("es admin")
                 }
+
                 return result[0].es_admin //solo manda el numero
             } else {
                 return -1
@@ -118,6 +121,7 @@ async function registrar() {
         nombre_usuario:nombre_usuario,
         contraseña:contraseña,
         es_admin: false
+/*
     }
     
     try {
@@ -141,6 +145,31 @@ async function registrar() {
         console.log(error)
     }
 
+*/
+    }
+    
+    try {
+        const response = await fetch(`http://localhost:4000/guardarUsuarios`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datos)
+        });
+
+        let result = await response.json();
+        console.log(result);
+        if (result.length > 0) {
+            login()
+        } else {
+            console.log("error")
+            console.log("Usuario existente, inicie sesion o vuelva a intentar")
+        }
+    } catch (error) {
+        console.log(error)
+    }
+
+
 }
 
 function cerrarsesion(){
@@ -160,7 +189,7 @@ function cerrarsesion(){
 
 async function login() {
     try {
-        let nombre = ui.getUser();       // Obtener el email del usuario
+        let nombre = ui.getUsername();       // Obtener el email del usuario
         let password = ui.getPassword(); // Obtener la contraseña
         console.log(nombre, password)
         let resultado = await existsUser(nombre, password)  
@@ -173,12 +202,14 @@ async function login() {
                 ui.clearLoginInputs()
                 console.log("es admin y entro al juego")
                 ui.changeScreenAdmin()
+
                 mostrarCancionesJuego()
             } else {
                 ui.clearLoginInputs()
                 console.log("no es admin y entro al juego")
                 ui.changeScreen()
                 mostrarCancionesJuego()
+
             }
         } else {
             console.log("no entro")
@@ -221,6 +252,7 @@ async function insertarCancion(){
         console.log("No se pudo insertar el usuario")
     } */
 }
+
 
 async function mostrarCancionesJuego() {
     try {
@@ -285,3 +317,4 @@ function calcularReproduccionesMenos(arrayCanciones){
 function puntajeUsuario(contadorPuntaje){
     document.getElementById("puntajeUsuario").innerHTML="Tu puntaje es de: " + contadorPuntaje
 }
+

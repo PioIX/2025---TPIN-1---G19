@@ -2,44 +2,31 @@ class UserInterface {
     constructor() {
         
     }
-
-    /**
-     * Obtiene el texto ingresado en el input "Correo electrónico", sección "Login".
-     * @returns String que contiene el correo electrónico ingresado por el usuario.
-     */
-    getEmail() {
-        return document.getElementById("email").value;
-    }
-
-    /**
-     * Obtiene el texto ingresado en el input "Usuario", sección "Login".
-     * @returns String que contiene el nombre de usuario.
-     */
-    getUser() {
+    getUsername() {
         return document.getElementById("username").value;
     }
 
-    /**
-     * Modifica el nombre de usuario logueado presentado en pantalla.
-     * @param {String} username Nombre del usuario logueado.
-     */
     setUser(username) {
         document.getElementById("loggedUsername").textContent = `¡Bienvenido ${username}!`;
     }
 
-    /**
-     * Obtiene el texto ingresado en el input "Contraseña", sección "Login".
-     * @returns String que contiene la contraseña ingresada por el usuario.
-     */
     getPassword() {
         return document.getElementById("password").value;
     }
+    getNombre_artista() {
+        return document.getElementById("nombre_artista").value;
+    }
+    getNombre_cancion() {
+    return document.getElementById("nombre_cancion").value;
+    }
+    getReproducciones() {
+    return document.getElementById("nro_reproducciones").value;
+    }
 
-    /**
-     * Vacía el contenido de los inputs del login / registro.
-     */
     clearLoginInputs() {
+
         //document.getElementById("email").value = "";
+
         document.getElementById("password").value = "";
         document.getElementById("username").value = "";
     }
@@ -54,12 +41,14 @@ class UserInterface {
         juego.style.display = 'block';
     } 
 
+
     changeScreenLogin(){
         const juego = document.getElementById("gameScreen");
         const loginForm = document.getElementById("loginForm");
         juego.style.display = 'none';
         loginForm.style.display = 'block';
     }
+
 
     changeScreenAdmin() {
         const admin = document.getElementById("adminPanel");
@@ -69,6 +58,7 @@ class UserInterface {
         loginForm.style.display = 'none';
         admin.style.display = 'block';
 
+
         console.log("entro a admin")
     }
     
@@ -77,3 +67,4 @@ class UserInterface {
 
 
 const ui = new UserInterface()
+

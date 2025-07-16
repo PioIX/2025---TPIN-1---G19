@@ -43,6 +43,7 @@ app.post('/guardarUsuarios', async function (req,res) {
             VALUES ('${req.body.nombre_usuario}', '${req.body.contraseña}', ${req.body.es_admin})
         `)
         res.send({mensaje:"se agrego correctamente"})
+
     } catch(error){
         console.log(error);
         res.send(error)
@@ -60,6 +61,25 @@ app.post('/guardarCanciones', async function (req,res) {
     } catch(error){
         console.log(error);
         res.send(error)
+/*
+    } catch(error){
+        console.log(error);
+        res.send(error)
+    }
+
+})
+
+app.post('/guardarCanciones', async function (req,res) {
+    try {
+        await realizarQuery(`
+        INSERT INTO Canciones (nombre_cancion, nombre_artista, nro_reproducciones) 
+            VALUES ('${req.body.nombre_cancion}','${req.body.nombre_artista}', '${req.body.nro_reproducciones}')
+        `)
+        res.send({mensaje: "se agrego correctamente"})
+    } catch(error){
+        console.log(error);
+        res.send(error)
+*/
     }
 
 })
@@ -98,6 +118,7 @@ app.post('/esAdmin', async function(req,res){
         console.log(error)
     }
 })
+
 
 app.get('/usuarios', async function(req,res){
     const response = await realizarQuery(`
