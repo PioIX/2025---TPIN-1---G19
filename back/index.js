@@ -98,10 +98,54 @@ app.post('/esAdmin', async function(req,res){
         console.log(error)
     }
 })
+
 app.get('/usuarios', async function(req,res){
     const response = await realizarQuery(`
         SELECT * FROM Usuarios   
     `)
     console.log(response)
     res.send(response)
+})
+
+app.get('/cancionesJuego', async function(req,res){
+    try {
+        const response = await realizarQuery(`
+        SELECT * FROM Canciones ORDER BY RAND()   
+    `)
+        console.log(response)
+        res.json(response)   
+    } catch (error) {
+        res.send("error obtener canciones")
+    }
+})
+
+app.get('/mejoresPuntajes', async function (req,res) {
+    try {
+        const response = await realizarQuery(`
+        SELECT nombre_usuario, puntaje FROM Usuarios ORDER BY puntaje DESC LIMIT 5
+    `)
+        res.send(response)
+    } catch (error) {
+        res.send("error al ordenar los puntajes")
+    }
+})
+
+app.post('/agregarPuntaje', async function (req,res) {
+    try {
+        const response = await realizarQuery(`
+        SELECT * FROM Usuarios WHERE idUsuario = '${req.body.idUsuario}'')
+    `)
+        if (response.length<0){
+            await realizarQuery(`
+            INSERT INTO Usuarios (nombre_usuario, contraseña, es_admin, puntaje) VALUES ('${req.body.nombre_usuario}','${req.body.contraseña}', '${req.body.es_admin}', '${req.body.contadorPuntaje}')
+            `)
+        } else {
+            await realizarQuery(`
+            UPDATE Usuarios SET puntaje = '${req.body.contadorPuntaje}' WHERE idUsuario='${req.body.idUsuario}')
+            `)
+        }
+        res.send("se agregó el puntaje correctamente")
+    } catch (error) {
+        res.send("error al agregar el puntaje")
+    }
 })
