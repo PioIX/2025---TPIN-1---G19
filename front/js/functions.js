@@ -281,6 +281,7 @@ function reemplazarPorCanciones(arrayCanciones){
         document.getElementById("artist1").innerHTML=arrayCanciones[contadorCanciones].nombre_artista;
         document.getElementById("artist2").innerHTML=arrayCanciones[contadorCanciones+1].nombre_artista;
         document.getElementById("reproducciones").innerHTML="Reproducciones: " + arrayCanciones[contadorCanciones].nro_reproducciones
+        //document.getElementById("idImagen").src = arrayCanciones[contadorCanciones+1].nombre_archivo
     } else {
         alert("No hay más canciones para seguir jugando")
     }
