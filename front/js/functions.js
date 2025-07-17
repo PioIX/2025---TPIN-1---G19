@@ -67,10 +67,10 @@ async function conseguirID(nombre) { //creas la funcion y los() los parametros q
         }
     } 
 
-    async function newuser(username,password) {
-    let resultado = existsUser(username,password)
+    async function newuser(email, username,password) {
+    let resultado = existsUser(email,username,password)
     if (resultado <= 0) {
-            users.push(new User (username, password))
+            users.push(new User (email,username, password))
             return users.length;
         } else {
             ui.showModal("Ese usuario ya existe")
@@ -114,10 +114,12 @@ async function login() {
             
 
 async function registrar() {
+    let email = ui.getEmail();
     let nombre_usuario = ui.getUsername();
     let contraseña = ui.getPassword();
 
     const datos = {
+        email: email,
         nombre_usuario:nombre_usuario,
         contraseña:contraseña,
         es_admin: false
@@ -212,8 +214,14 @@ async function login() {
 
             }
         } else {
-            console.log("no entro")
-            idLogged = -1
+            let boton = ui.registrar();
+            if (boton == true)
+                ui.changeScreenRegistro()
+            else {
+                console.log("no entro")
+                idLogged = -1
+            }
+            
         }
     } catch (error) {
         console.log(error)
