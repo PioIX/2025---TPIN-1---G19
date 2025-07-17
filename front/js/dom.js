@@ -2,6 +2,10 @@ class UserInterface {
     constructor() {
         
     }
+    getEmail() {
+        return document.getElementById("email").value;
+    }
+
     getUsername() {
         return document.getElementById("username").value;
     }
@@ -61,9 +65,15 @@ class UserInterface {
 
         console.log("entro a admin")
     }
+
+    /*changeScreenRegistro() {
+        const juego = document.getElementById("gameScreen");
+        const registroForm = document.getElementById("registroForm");
+        juego.style.display = 'none';
+        registroForm.style.display = 'block';
+    }*/
     
 }
-
 
 
 const ui = new UserInterface()

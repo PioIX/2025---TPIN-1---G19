@@ -15,16 +15,27 @@
     </header>
 
     <main id="loginForm" class="formulario" style="display: block;">
+        <h2>Iniciar Sesión</h2>
         <section class="bloque">
-            <h2>Iniciar Sesión</h2>
             <input type="text" id="username" placeholder="Nombre de usuario">
             <input type="password" id="password" placeholder="Contraseña">
             <button onclick="login()">Ingresar</button>
-
             <button onclick="registrar()">Registrarse</button>
         </section>
     </main>
+    
 
+   <!--  <main id="registroForm" class="formulario" style="display: block;">
+        <h2>Registrarse</h2>
+        <section class="bloque">
+            <input type="email" id="email" placeholder="E-mail">
+            <input type="text" id="username" placeholder="Nombre de usuario">
+            <input type="password" id="password" placeholder="Contraseña">
+            <button onclick="registrar()">Registrarse</button>
+            <button onclick="login()">Iniciar Sesión</button>
+        </section>
+    </main> -->
+    
 
     <main id="gameScreen" class="pantalla" style="display: none;">
         <h2 id="loggedUsername">¡Bienvenido/a!</h2>
@@ -45,11 +56,11 @@
                 <h3 id="title2">Canción B</h3>
                 <p id="artist2">Artista B</p>
                 <p>Reproducciones: ???</p>
+                <img id="imagen2" src="" alt="Imagen Cancion 2">
                 <div class="botones">
                     <button onclick="calcularReproduccionesBotonMas(arrayCanciones)">Más</button>
                     <button onclick="calcularReproduccionesMenos(arrayCanciones)">Menos</button>
-                </div>
-                <img id="imagen2" src="" alt="Imagen Cancion 2">
+                </div> 
             </div>
         </div>
 
