@@ -282,8 +282,8 @@ function reemplazarPorCanciones(arrayCanciones){
         document.getElementById("artist2").innerHTML=arrayCanciones[contadorCanciones+1].nombre_artista;
         document.getElementById("reproducciones").innerHTML="Reproducciones: " + arrayCanciones[contadorCanciones].nro_reproducciones
         //document.getElementById("idImagen").src = arrayCanciones[contadorCanciones+1].nombre_archivo
-        document.getElementById("imagen1").src = "./imagenes/" + arrayCanciones[contadorCanciones].nombre_imagen;
-        document.getElementById("imagen2").src = "./imagenes/" + arrayCanciones[contadorCanciones + 1].nombre_imagen;
+        document.getElementById("imagen1").src = "../images/" + arrayCanciones[contadorCanciones].nombre_imagen;
+        document.getElementById("imagen2").src = "../images/" + arrayCanciones[contadorCanciones + 1].nombre_imagen;
     } else {
         alert("No hay más canciones para seguir jugando")
     }
