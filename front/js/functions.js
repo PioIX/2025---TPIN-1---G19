@@ -56,6 +56,7 @@ async function conseguirID(nombre) { //creas la funcion y los() los parametros q
 
                 if (result[0].es_admin==1){
                     console.log("es admin")
+                    opcionesSelect( )
                 }
 
                 return result[0].es_admin //solo manda el numero
@@ -330,3 +331,95 @@ function puntajeUsuario(contadorPuntaje){
     document.getElementById("puntajeUsuario").innerHTML="Tu puntaje es de: " + contadorPuntaje
 }
 
+//AGREGAR OPCIONES AL SELECT
+async function traerCancionesFetch() {
+    try {
+        const response = await fetch(`http://localhost:4000/traerCanciones`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+        let result = await response.json();
+        console.log(result);
+        return result;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function opcionesSelect() {
+    const canciones = await traerCancionesFetch();
+    let opcionesCanciones = `<option disabled selected value="">Seleccione una canción</option>`;
+    for (let i = 0; i < canciones.length; i++) {
+        opcionesCanciones += `<option value="${canciones[i].nombre_cancion}">${canciones[i].nombre_cancion}</option>`;
+    }
+    document.getElementById("selectCanciones").innerHTML = opcionesCanciones;
+    document.getElementById("selectCancionesDelete").innerHTML=opcionesCanciones;
+
+    let campoModificar = `
+        <option disabled selected value="">Seleccione qué desea modificar</option>
+        <option value="nombre_cancion">Nombre de la canción</option>
+        <option value="nombre_artista">Nombre del artista</option>
+        <option value="nro_reproducciones">Número de reproducciones</option>
+    `;
+    document.getElementById("campoModificar").innerHTML = campoModificar;
+}
+
+
+//MODIFICAR CANCION
+async function modificarCanciones(){
+    let cancionSeleccionada= ui.getSelectCanciones()
+    let campo= ui.getSelectModificar()
+    let nuevoValor= ui.getInput()
+
+    const datos = {
+    cancionSeleccionada: cancionSeleccionada,
+    campo: campo,
+    nuevoValor: nuevoValor
+    };
+
+
+    if (campo!="" && nuevoValor !== ""){
+        try {
+            const responde = await fetch (`http://localhost:4000/modificarCanciones`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+                body: JSON.stringify(datos)
+            });
+            const result = await responde.json();
+            console.log(result);
+        } catch (error) {
+            console.log(error);
+        }
+       
+    } else {
+        alert ("complete los campos")
+    }
+
+}
+
+//ELIMINAR CANCION
+async function eliminarCanciones() {
+    cancionSeleccionadaDelete=ui.getselectCancionesDelete()
+
+    const datos = {
+        cancionSeleccionadaDelete:cancionSeleccionadaDelete
+    }
+
+    try {
+        const responde = await fetch (`http://localhost:4000/eliminarCanciones`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify(datos)
+        });
+        const result = await responde.json();
+        console.log(result);
+    } catch (error) {
+        console.log(error);
+    }
+}

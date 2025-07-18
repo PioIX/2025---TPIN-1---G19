@@ -75,18 +75,31 @@
    
     <main id="adminPanel" class="formulario" style="display: none;">
 
-        <h2>Panel Administrador - Añadir Canción</h2>
+        <h2>Panel Administrador - Añadir Canciones</h2>
 
         <input id="nombre_cancion" type="text" placeholder="Nombre de la canción">
         <input id="nombre_artista" type="text" placeholder="Nombre del artista">
         <input id="nro_reproducciones" type="number" placeholder="Número de reproducciones">
 
-        <button onclick="insertarCancion()">Guardar Canción</button>
+        <button onclick="insertarCancion()" id="guardarCancionButton">Guardar canción</button>
+
+        <div id="modificarCanciones">
+            <h2>Modificar Canciones</h2>
+            <select name="" id="selectCanciones"></select>
+            <select name="" id="campoModificar"></select>
+            <input id="ingresoPut" placeholder="Ingrese lo que quiera modificar">
+            <button onclick="modificarCanciones()">Modificar canción</button>
+        </div>
+
+        <div id="eliminarCanciones">
+            <h2>Eliminar Canciones</h2>
+            <select name="" id="selectCancionesDelete"></select>
+            <button onclick="eliminarCanciones()">Eliminar canción</button>
+        </div>
     </main>
 
     <main id="tablaDePuntajes" style="display:none;">
         <h2>Tabla de puntajes</h2>
-
     </main>
 
 

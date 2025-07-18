@@ -27,6 +27,23 @@ class UserInterface {
     return document.getElementById("nro_reproducciones").value;
     }
 
+    getSelectCanciones(){
+        return document.getElementById("selectCanciones").value;
+    }
+
+    getSelectModificar(){
+        return document.getElementById("campoModificar").value;
+    }
+
+    getInput(){
+        return document.getElementById("ingresoPut").value;
+    }
+
+    getselectCancionesDelete(){
+        return document.getElementById("selectCancionesDelete").value
+    }
+
+
     clearLoginInputs() {
 
         //document.getElementById("email").value = "";
