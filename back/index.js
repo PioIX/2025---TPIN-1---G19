@@ -140,6 +140,19 @@ app.get('/cancionesJuego', async function(req,res){
     }
 })
 
+app.get('/traerCanciones', async function(req,res){
+    try {
+        const response = await realizarQuery(`
+        SELECT * FROM Canciones  
+    `)
+        console.log(response)
+        res.json(response)   
+    } catch (error) {
+        res.send("error obtener canciones")
+    }
+})
+
+
 app.get('/mejoresPuntajes', async function (req,res) {
     try {
         const response = await realizarQuery(`
@@ -168,5 +181,23 @@ app.post('/agregarPuntaje', async function (req,res) {
         res.send("se agregó el puntaje correctamente")
     } catch (error) {
         res.send("error al agregar el puntaje")
+    }
+})
+
+app.put('/modificarCanciones', async function (req, res) {
+    try {
+        const result = await realizarQuery(`UPDATE Canciones SET ${req.body.campo}='${req.body.nuevoValor}' WHERE nombre_cancion = '${req.body.cancionSeleccionada}'`);
+        res.json(result);
+    } catch (error) {
+        res.json("error al modificar la canción")
+    }
+})
+
+app.delete('/eliminarCanciones', async function (req,res) {
+    try {
+        const result= await realizarQuery(`DELETE FROM Canciones WHERE nombre_cancion="${req.body.cancionSeleccionadaDelete}"`)
+        res.json(result)
+    } catch (error) {
+        
     }
 })
